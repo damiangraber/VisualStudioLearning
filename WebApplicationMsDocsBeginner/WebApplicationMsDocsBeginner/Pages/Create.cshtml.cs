@@ -12,12 +12,9 @@ namespace WebApplicationMsDocsBeginner.Pages
     {
         private readonly AppDbContext _db;
 
-        private readonly ILogger<CreateModel> _log;
-
-        public CreateModel(AppDbContext db, ILogger<CreateModel> log)
+        public CreateModel(AppDbContext db)
         {
             _db = db;
-            _log = log;
         }
 
         [TempData]
@@ -37,7 +34,6 @@ namespace WebApplicationMsDocsBeginner.Pages
             await _db.SaveChangesAsync();
             var msg = $"Customer {Customer.Name} added!";
             Message = msg;
-            _log.LogCritical(msg);
             return RedirectToPage("/Index");
         }
     }
